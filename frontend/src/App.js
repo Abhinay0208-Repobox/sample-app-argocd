@@ -4,7 +4,8 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://<backend-service>:5000/api/message')  // Assumes same domain or reverse proxy
+    fetch('http://flask-backend.react-flask-app.svc.cluster.local:5000/api/message')
+  // Assumes same domain or reverse proxy
       .then(res => res.json())
       .then(data => setMessage(data.message));
   }, []);
