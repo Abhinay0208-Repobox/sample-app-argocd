@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-backend
+  namespace: react-flask-app
 spec:
   replicas: 1
   selector:
@@ -17,24 +18,3 @@ spec:
           image: your-dockerhub-username/flask-backend:latest
           ports:
             - containerPort: 5000
-          env:
-            - name: DB_HOST
-              value: mysql
-            - name: DB_USER
-              value: user
-            - name: DB_PASS
-              value: password
-            - name: DB_NAME
-              value: mydb
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-backend
-spec:
-  selector:
-    app: flask-backend
-  ports:
-    - port: 5000
-      targetPort: 5000
-  type: ClusterIP
